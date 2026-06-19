@@ -33,5 +33,6 @@ typedef struct {
 
 extern uint32_t ar_game_score;
 extern ar_game_border_t border;
+extern uint8_t player_life;
 
 #endif //__AR_GAME_BORDER_H__

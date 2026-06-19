@@ -4,11 +4,16 @@
 #include "view_render.h"
 
 // scr_archery_game
+extern const unsigned char PROGMEM bitmap_heart[];
 extern const unsigned char PROGMEM bitmap_archery_I []; 
 extern const unsigned char PROGMEM bitmap_archery_II [];
-extern const unsigned char PROGMEM bitmap_meteoroid_I [];
-extern const unsigned char PROGMEM bitmap_meteoroid_II [];
-extern const unsigned char PROGMEM bitmap_meteoroid_III [];
+extern const unsigned char PROGMEM bitmap_fly_I[];
+extern const unsigned char PROGMEM bitmap_fly_II[];
+extern const unsigned char PROGMEM bitmap_fly_III[];
+extern const unsigned char PROGMEM bitmap_fast_fly_I[];
+extern const unsigned char PROGMEM bitmap_fast_fly_II[];
+extern const unsigned char PROGMEM bitmap_bee_I[];
+extern const unsigned char PROGMEM bitmap_bee_II[];
 extern const unsigned char PROGMEM bitmap_arrow [];
 extern const unsigned char PROGMEM bitmap_bang_I [];
 extern const unsigned char PROGMEM bitmap_bang_II [];

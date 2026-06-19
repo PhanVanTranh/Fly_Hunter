@@ -6,6 +6,7 @@
 
 ar_game_border_t border;
 uint32_t ar_game_score					 = 10;
+uint8_t player_life = 3;
 static uint32_t ar_game_next_level_score = AR_GAME_LEVEL_UP_SCORE;
 
 void ar_game_border_handle(ak_msg_t *msg) {
@@ -15,6 +16,9 @@ void ar_game_border_handle(ak_msg_t *msg) {
 		border.x			= AXIS_X_BORDER;
 		border.visible		= WHITE;
 		border.action_image = AR_GAME_BORDER_ACTION_IMAGE_1;
+
+		//ar_game_score = 0;
+		player_life = 3;
 	} break;
 
 	case AR_GAME_LEVEL_UP: {
@@ -29,12 +33,45 @@ void ar_game_border_handle(ak_msg_t *msg) {
 
 	case AR_GAME_CHECK_GAME_OVER: {
 		APP_DBG_SIG("AR_GAME_CHECK_GAME_OVER\n");
-		for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
-			if (meteoroid[i].visible == WHITE && meteoroid[i].x <= (border.x - 3)) {
-				task_post_pure_msg(AR_GAME_SCREEN_ID, AR_GAME_RESET);
+		// for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
+		// 	if (meteoroid[i].visible == WHITE && meteoroid[i].x <= (border.x - 3)) {
+		// 		task_post_pure_msg(AR_GAME_SCREEN_ID, AR_GAME_RESET);
+		// 		break;
+		// 	}
+		// }
+
+		 for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
+
+			if (meteoroid[i].visible == WHITE &&
+				meteoroid[i].x <= (border.x - 3))
+			{
+				if (player_life > 0) {
+					player_life--;
+				}
+
+				if (player_life == 0) {
+					task_post_pure_msg(
+						AR_GAME_SCREEN_ID,
+						AR_GAME_RESET
+					);
+				}
+				else {
+					meteoroid[i].x = RANDOM_METEOROID_X();
+
+					if (i == 0) {
+						meteoroid[i].y = RANDOM_METEOROID_Y_TOP();
+					}
+					else if (i == 1) {
+						meteoroid[i].y = RANDOM_METEOROID_Y_MIDDLE();
+					}
+					else {
+						meteoroid[i].y = RANDOM_METEOROID_Y_BOTTOM();
+					}
+				}
+
 				break;
 			}
-		}
+    	}
 	} break;
 
 	case AR_GAME_BORDER_RESET: {

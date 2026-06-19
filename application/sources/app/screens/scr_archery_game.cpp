@@ -49,10 +49,22 @@ static void ar_game_print_text_partial(const char* text, uint8_t max_chars) {
 void ar_game_frame_display() {
 	view_render.setTextSize(1);
 	view_render.setTextColor(WHITE);
-	view_render.setCursor(2,55);
-	view_render.print("Arrow:");
-	view_render.print(settingsetup.num_arrow);
-	view_render.setCursor(60,55);
+	// view_render.setCursor(2,55);
+	// view_render.print("Arrow:");
+	// view_render.print(settingsetup.num_arrow);
+	//view_render.setCursor(2,54);
+	//view_render.print("Heart:");
+	for(uint8_t i = 0; i < player_life; i++) {
+    view_render.drawBitmap(
+        2 + i * 10,
+        55,
+        bitmap_heart,
+        8,
+        8,
+        WHITE
+    );
+	}
+	view_render.setCursor(60,54);
 	view_render.print(" Score:");
 	view_render.print(ar_game_score);
 	view_render.drawLine(0, LCD_HEIGHT, 	LCD_WIDTH, LCD_HEIGHT,		WHITE);
@@ -100,7 +112,7 @@ void ar_game_meteoroid_display() {
 			if (meteoroid[i].action_image == AR_GAME_METEOROID_ACTION_IMAGE_1) {
 				view_render.drawBitmap(	meteoroid[i].x, \
 										meteoroid[i].y, \
-										bitmap_meteoroid_I, \
+										bitmap_fly_I, \
 										SIZE_BITMAP_METEOROIDS_X, \
 										SIZE_BITMAP_METEOROIDS_Y, \
 				 						WHITE);
@@ -108,7 +120,7 @@ void ar_game_meteoroid_display() {
 			else if (meteoroid[i].action_image == AR_GAME_METEOROID_ACTION_IMAGE_2) {
 				view_render.drawBitmap(	meteoroid[i].x, \
 										meteoroid[i].y, \
-										bitmap_meteoroid_II, \
+										bitmap_fly_II, \
 										SIZE_BITMAP_METEOROIDS_X, \
 										SIZE_BITMAP_METEOROIDS_Y, \
 										WHITE);
@@ -116,7 +128,7 @@ void ar_game_meteoroid_display() {
 			else if (meteoroid[i].action_image == AR_GAME_METEOROID_ACTION_IMAGE_3) {
 				view_render.drawBitmap(	meteoroid[i].x, \
 										meteoroid[i].y, \
-										bitmap_meteoroid_III, \
+										bitmap_fly_III, \
 										SIZE_BITMAP_METEOROIDS_X, \
 										SIZE_BITMAP_METEOROIDS_Y, \
 				 						WHITE);

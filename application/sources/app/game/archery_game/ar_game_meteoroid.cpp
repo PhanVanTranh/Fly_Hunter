@@ -10,8 +10,12 @@
                                              ((y1) < ((y2) + (h2))) && \
                                              (((y1) + (h1)) > (y2)))
 
-#define RANDOM_METEOROID_X() ((rand() % 39) + 130)
+//#define RANDOM_METEOROID_X() ((rand() % 39) + 130)
 #define RANDOM_METEOROID_ACTION_IMAGE() (rand() % AR_GAME_METEOROID_ACTION_IMAGE_3 + AR_GAME_METEOROID_ACTION_IMAGE_1)
+
+// #define RANDOM_METEOROID_Y_TOP()      (rand() % 4)          // 0~3
+// #define RANDOM_METEOROID_Y_MIDDLE()   (18 + rand() % 4)    // 18~21
+// #define RANDOM_METEOROID_Y_BOTTOM()   (36 + rand() % 4)    // 36~39
 
 ar_game_meteoroid_t meteoroid[NUM_METEOROIDS];
 
@@ -19,12 +23,25 @@ void ar_game_meteoroid_handle(ak_msg_t *msg) {
 	switch (msg->sig) {
 	case AR_GAME_METEOROID_SETUP: {
 		APP_DBG_SIG("AR_GAME_METEOROID_SETUP\n");
+		// for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
+		// 	//meteoroid[i].y			  = AXIS_Y_METEOROID_START + (i * AXIS_Y_METEOROID_STEP);
+		// 	//meteoroid[i].y 			  = RANDOM_METEOROID_Y();
+		// 	meteoroid[i].x			  = RANDOM_METEOROID_X();
+		// 	meteoroid[i].visible	  = WHITE;
+		// 	meteoroid[i].action_image = RANDOM_METEOROID_ACTION_IMAGE();
+		// }
+		// meteoroid[0].y = RANDOM_METEOROID_Y_TOP();
+		// meteoroid[1].y = RANDOM_METEOROID_Y_BOTTOM();
+
 		for (uint8_t i = 0; i < NUM_METEOROIDS; i++) {
-			meteoroid[i].y			  = AXIS_Y_METEOROID_START + (i * AXIS_Y_METEOROID_STEP);
-			meteoroid[i].x			  = RANDOM_METEOROID_X();
-			meteoroid[i].visible	  = WHITE;
+			meteoroid[i].x            = RANDOM_METEOROID_X();
+			meteoroid[i].visible      = WHITE;
 			meteoroid[i].action_image = RANDOM_METEOROID_ACTION_IMAGE();
 		}
+
+		meteoroid[0].y = RANDOM_METEOROID_Y_TOP();
+		meteoroid[1].y = RANDOM_METEOROID_Y_MIDDLE();
+		meteoroid[2].y = RANDOM_METEOROID_Y_BOTTOM();
 	} break;
 
 	case AR_GAME_METEOROID_RUN: {
@@ -62,8 +79,24 @@ void ar_game_meteoroid_handle(ak_msg_t *msg) {
                             // Reset arrow and meteoroid
                             arrow[j].x				  = 0;
                             arrow[j].y				  = 0;
-                            meteoroid[i].x			  = RANDOM_METEOROID_X();
-                            meteoroid[i].action_image = RANDOM_METEOROID_ACTION_IMAGE();
+                            // meteoroid[i].x			  = RANDOM_METEOROID_X();
+                            // meteoroid[i].action_image = RANDOM_METEOROID_ACTION_IMAGE();
+							//meteoroid[i].action_image = RANDOM_METEOROID_ACTION_IMAGE();
+							//meteoroid[i].visible = WHITE;
+							meteoroid[i].x = RANDOM_METEOROID_X();
+
+							if (i == 0) {
+								meteoroid[i].y = RANDOM_METEOROID_Y_TOP();
+							}
+							else if (i == 1) {
+								meteoroid[i].y = RANDOM_METEOROID_Y_MIDDLE();
+							}
+							else {
+								meteoroid[i].y = RANDOM_METEOROID_Y_BOTTOM();
+							}
+
+							meteoroid[i].action_image = RANDOM_METEOROID_ACTION_IMAGE();
+							meteoroid[i].visible = WHITE;
                             if (settingsetup.num_arrow < MAX_NUM_ARROW) {
                                 settingsetup.num_arrow++;
                             }
