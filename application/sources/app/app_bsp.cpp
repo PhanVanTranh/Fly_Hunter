@@ -9,7 +9,7 @@
 
 #include "task_list.h"
 
-#include "scr_archery_game.h"
+#include "scr_fly_hunter_game.h"
 
 button_t btn_mode;
 button_t btn_up;
@@ -54,7 +54,7 @@ void btn_up_callback(void* b) {
 	case BUTTON_SW_STATE_PRESSED: {
 		APP_DBG("[%s] BUTTON_SW_STATE_PRESSED\n", __func__);
 		if (ar_game_state != GAME_OFF) {
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, AR_GAME_ARCHERY_UP);
+			task_post_pure_msg(AR_GAME_FLY_HUNTER_ID, AR_GAME_FLY_HUNTER_UP);
 		}
 		else {
 			task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_BUTTON_UP_PRESSED);
@@ -86,7 +86,7 @@ void btn_down_callback(void* b) {
 	case BUTTON_SW_STATE_PRESSED: {
 		APP_DBG("[%s] BUTTON_SW_STATE_PRESSED\n", __func__);
 		if (ar_game_state != GAME_OFF) {
-			task_post_pure_msg(AR_GAME_ARCHERY_ID, AR_GAME_ARCHERY_DOWN);
+			task_post_pure_msg(AR_GAME_FLY_HUNTER_ID, AR_GAME_FLY_HUNTER_DOWN);
 		}
 		else {
 			task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_BUTTON_DOWN_PRESSED);

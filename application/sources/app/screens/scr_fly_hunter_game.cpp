@@ -1,11 +1,11 @@
-#include "scr_archery_game.h"
+#include "scr_fly_hunter_game.h"
 
 #include <stdlib.h>
 
 #include "screens.h"
 
 /*****************************************************************************/
-/* Variable Declaration - Archery game screen */
+/* Variable Declaration - fly_hunter game screen */
 /*****************************************************************************/
 #define AR_GAME_COMMAND_TEXT_MAX_LEN		(10)
 #define AR_GAME_HIGHSCORE_SCORE				(300)
@@ -44,7 +44,7 @@ static void ar_game_print_text_partial(const char* text, uint8_t max_chars) {
 }
 
 /*****************************************************************************/
-/* View - Archery game screen*/
+/* View - fly_hunter game screen*/
 /*****************************************************************************/
 void ar_game_frame_display() {
 	view_render.setTextSize(1);
@@ -72,22 +72,22 @@ void ar_game_frame_display() {
 	view_render.drawRect(0, 0, 128, 64, 1);
 }
 
-void ar_game_archery_display() {
-	if (archery.visible == WHITE) {
-		if (archery.action_image == AR_GAME_ARCHERY_ACTION_IMAGE_1) {
-			view_render.drawBitmap(	archery.x, \
-					archery.y - 10, \
-					bitmap_archery_I, \
-					SIZE_BITMAP_ARCHERY_X, \
-					SIZE_BITMAP_ARCHERY_Y, \
+void ar_game_fly_hunter_display() {
+	if (fly_hunter.visible == WHITE) {
+		if (fly_hunter.action_image == AR_GAME_FLY_HUNTER_ACTION_IMAGE_1) {
+			view_render.drawBitmap(	fly_hunter.x, \
+					fly_hunter.y - 10, \
+					bitmap_fly_hunter_I, \
+					SIZE_BITMAP_FLY_HUNTER_X, \
+					SIZE_BITMAP_FLY_HUNTER_Y, \
 					WHITE);
 		}
-		else if (archery.action_image == AR_GAME_ARCHERY_ACTION_IMAGE_2) {
-			view_render.drawBitmap(	archery.x, \
-					archery.y - 10, \
-					bitmap_archery_II, \
-					SIZE_BITMAP_ARCHERY_X, \
-					SIZE_BITMAP_ARCHERY_Y, \
+		else if (fly_hunter.action_image == AR_GAME_FLY_HUNTER_ACTION_IMAGE_2) {
+			view_render.drawBitmap(	fly_hunter.x, \
+					fly_hunter.y - 10, \
+					bitmap_fly_hunter_II, \
+					SIZE_BITMAP_FLY_HUNTER_X, \
+					SIZE_BITMAP_FLY_HUNTER_Y, \
 					WHITE);
 		}
 	}
@@ -183,27 +183,27 @@ void ar_game_border_display() {
 	}
 }
 
-static void view_scr_archery_game();
+static void view_scr_fly_hunter_game();
 
-view_dynamic_t dyn_view_item_archery_game = {
+view_dynamic_t dyn_view_item_fly_hunter_game = {
 	{
 		.item_type = ITEM_TYPE_DYNAMIC,
 	},
-	view_scr_archery_game
+	view_scr_fly_hunter_game
 };
 
-view_screen_t scr_archery_game = {
-	&dyn_view_item_archery_game,
+view_screen_t scr_fly_hunter_game = {
+	&dyn_view_item_fly_hunter_game,
 	ITEM_NULL,
 	ITEM_NULL,
 
 	.focus_item = 0,
 };
 
-void view_scr_archery_game() {
+void view_scr_fly_hunter_game() {
 	if (ar_game_state == GAME_PLAY) {
 		ar_game_frame_display();
-		ar_game_archery_display();
+		ar_game_fly_hunter_display();
 		ar_game_arrow_display();
 		ar_game_meteoroid_display();
 		ar_game_bang_display();
@@ -226,7 +226,7 @@ void view_scr_archery_game() {
 }
 
 /*****************************************************************************/
-/* Handle - Archery game screen */
+/* Handle - fly_hunter game screen */
 /*****************************************************************************/
 void rank_ranking() {
 	if (gamescore.score_now > gamescore.score_1st) {
@@ -243,7 +243,7 @@ void rank_ranking() {
 	}
 }
 
-void scr_archery_game_handle(ak_msg_t* msg) {
+void scr_fly_hunter_game_handle(ak_msg_t* msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
@@ -251,7 +251,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		ar_game_setting_read(&settingsetup);
 
 		// Setup game Object
-		task_post_pure_msg(AR_GAME_ARCHERY_ID, 	 	AR_GAME_ARCHERY_SETUP);
+		task_post_pure_msg(AR_GAME_FLY_HUNTER_ID, 	 	AR_GAME_FLY_HUNTER_SETUP);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 	 	AR_GAME_ARROW_SETUP);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_SETUP);
 		task_post_pure_msg(AR_GAME_BANG_ID, 	 	AR_GAME_BANG_SETUP);
@@ -271,7 +271,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 	case AR_GAME_TIME_TICK: {
 		APP_DBG_SIG("AR_GAME_TIME_TICK\n");
 		// Time tick
-		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_UPDATE);
+		task_post_pure_msg(AR_GAME_FLY_HUNTER_ID, 		AR_GAME_FLY_HUNTER_UPDATE);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RUN);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_RUN);
 		task_post_pure_msg(AR_GAME_METEOROID_ID, 	AR_GAME_METEOROID_DETONATOR);
@@ -287,7 +287,7 @@ void scr_archery_game_handle(ak_msg_t* msg) {
 		timer_remove_attr(AC_TASK_DISPLAY_ID, AR_GAME_TIME_TICK);
 
 		// Reset game Object
-		task_post_pure_msg(AR_GAME_ARCHERY_ID, 		AR_GAME_ARCHERY_RESET);
+		task_post_pure_msg(AR_GAME_FLY_HUNTER_ID, 		AR_GAME_FLY_HUNTER_RESET);
 		task_post_pure_msg(AR_GAME_ARROW_ID, 		AR_GAME_ARROW_RESET);
 		task_post_pure_msg(AR_GAME_METEOROID_ID,	AR_GAME_METEOROID_RESET);
 		task_post_pure_msg(AR_GAME_BANG_ID, 		AR_GAME_BANG_RESET);

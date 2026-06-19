@@ -153,7 +153,7 @@ enum {
 };
 
 /*****************************************************************************/
-/*  Archery game 'SCREEN' task define
+/*  fly_hunter game 'SCREEN' task define
  */
 /*****************************************************************************/
 /* define timer */
@@ -169,21 +169,21 @@ enum {
 };
 
 /*****************************************************************************/
-/*  Archery game 'ARCHERY' task define
+/*  fly_hunter game 'fly_hunter' task define
  */
 /*****************************************************************************/
 /* define timer */
 /* define signal */
 enum {
-	AR_GAME_ARCHERY_SETUP = AR_GAME_DEFINE_SIG,
-	AR_GAME_ARCHERY_UPDATE,
-	AR_GAME_ARCHERY_UP,
-	AR_GAME_ARCHERY_DOWN,
-	AR_GAME_ARCHERY_RESET,
+	AR_GAME_FLY_HUNTER_SETUP = AR_GAME_DEFINE_SIG,
+	AR_GAME_FLY_HUNTER_UPDATE,
+	AR_GAME_FLY_HUNTER_UP,
+	AR_GAME_FLY_HUNTER_DOWN,
+	AR_GAME_FLY_HUNTER_RESET,
 };
 
 /*****************************************************************************/
-/*  Archery game 'ARROW' task define
+/*  fly_hunter game 'ARROW' task define
  */
 /*****************************************************************************/
 /* define timer */
@@ -196,7 +196,7 @@ enum {
 };
 
 /*****************************************************************************/
-/*  Archery game 'BANG' task define
+/*  fly_hunter game 'BANG' task define
  */
 /*****************************************************************************/
 /* define timer */
@@ -208,7 +208,7 @@ enum {
 };
 
 /*****************************************************************************/
-/*  Archery game 'BORDER' task define
+/*  fly_hunter game 'BORDER' task define
  */
 /*****************************************************************************/
 /* define timer */
@@ -221,7 +221,7 @@ enum {
 };
 
 /*****************************************************************************/
-/*  Archery game 'METEOROID' task define
+/*  fly_hunter game 'METEOROID' task define
  */
 /*****************************************************************************/
 /* define timer */

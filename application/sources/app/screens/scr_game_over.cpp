@@ -73,7 +73,7 @@ void scr_game_over_handle(ak_msg_t* msg) {
 
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED: {
 		APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_PRESSED\n");
-		SCREEN_TRAN(scr_archery_game_handle, &scr_archery_game );
+		SCREEN_TRAN(scr_fly_hunter_game_handle, &scr_fly_hunter_game );
 		BUZZER_PlaySound(BUZZER_SOUND_CLICK);
 	} break;
 

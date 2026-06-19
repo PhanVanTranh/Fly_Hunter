@@ -25,10 +25,10 @@ enum {
 	AC_TASK_UART_IF_ID,
 	AC_TASK_DISPLAY_ID,
 
-	/* ARCHERY GAME ID */
+	/* fly_hunter GAME ID */
 	AR_GAME_METEOROID_ID,
 	AR_GAME_BORDER_ID,
-	AR_GAME_ARCHERY_ID,
+	AR_GAME_FLY_HUNTER_ID,
 	AR_GAME_ARROW_ID,
 	AR_GAME_BANG_ID,
 	AR_GAME_SCREEN_ID,
@@ -70,13 +70,13 @@ extern void task_if(ak_msg_t*);
 extern void task_uart_if(ak_msg_t*);
 extern void task_display(ak_msg_t*);
 
-/* ARCHERY GAME HANDLE */
-extern void ar_game_archery_handle(ak_msg_t*);
+/* fly_hunter GAME HANDLE */
+extern void ar_game_fly_hunter_handle(ak_msg_t*);
 extern void ar_game_arrow_handle(ak_msg_t*);
 extern void ar_game_meteoroid_handle(ak_msg_t*);
 extern void ar_game_border_handle(ak_msg_t*);
 extern void ar_game_bang_handle(ak_msg_t*);
-extern void scr_archery_game_handle(ak_msg_t*);
+extern void scr_fly_hunter_game_handle(ak_msg_t*);
 
 /* LINK TASK */
 extern void task_link_phy(ak_msg_t*);

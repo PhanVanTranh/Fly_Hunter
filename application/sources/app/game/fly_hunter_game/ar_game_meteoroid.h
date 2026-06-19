@@ -14,7 +14,7 @@
 #include "task_display.h"
 
 #include "buzzer.h"
-#include "scr_archery_game.h"
+#include "scr_fly_hunter_game.h"
 
 // #define NUM_METEOROIDS              (2)
 // #define SIZE_BITMAP_METEOROIDS_X    (40)

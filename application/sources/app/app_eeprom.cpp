@@ -3,7 +3,7 @@
 #include "eeprom.h"
 
 /*
- * EEPROM layout for archery game persistent data.
+ * EEPROM layout for fly_hunter game persistent data.
  *
  * Each record is stored as:
  *   [magic_number][payload struct][8-bit additive checksum]

@@ -3,10 +3,10 @@
 
 #include "view_render.h"
 
-// scr_archery_game
+// scr_fly_hunter_game
 extern const unsigned char PROGMEM bitmap_heart[];
-extern const unsigned char PROGMEM bitmap_archery_I []; 
-extern const unsigned char PROGMEM bitmap_archery_II [];
+extern const unsigned char PROGMEM bitmap_fly_hunter_I []; 
+extern const unsigned char PROGMEM bitmap_fly_hunter_II [];
 extern const unsigned char PROGMEM bitmap_fly_I[];
 extern const unsigned char PROGMEM bitmap_fly_II[];
 extern const unsigned char PROGMEM bitmap_fly_III[];
@@ -33,7 +33,7 @@ extern const unsigned char PROGMEM speaker_1 [];
 extern const unsigned char PROGMEM speaker_2 [];
 
 // scr_menu_game
-extern const unsigned char PROGMEM archery_icon [];
+extern const unsigned char PROGMEM fly_hunter_icon [];
 extern const unsigned char PROGMEM dot_icon [];
 extern const unsigned char PROGMEM chart_icon [];
 extern const unsigned char PROGMEM setting_icon [];

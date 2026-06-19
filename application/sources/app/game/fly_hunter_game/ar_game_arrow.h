@@ -13,7 +13,7 @@
 #include "task_display.h"
 
 #include "buzzer.h"
-#include "scr_archery_game.h"
+#include "scr_fly_hunter_game.h"
 #include "app_eeprom.h"
 
 #define MAX_NUM_ARROW       (AR_GAME_SETTING_NUM_ARROW_MAX)
