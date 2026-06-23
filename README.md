@@ -1,4 +1,4 @@
-# Archery Game - Build on AK Embedded Base Kit
+# Fly Hunter Game - Build on AK Embedded Base Kit
 ## Gameplay Demo
 
 <div align="center">
